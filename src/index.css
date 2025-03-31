@@ -1,196 +1,686 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 260 100% 99%;
-    --foreground: 260 10% 10%;
+/* @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'); */
 
-    --card: 0 0% 100%;
-    --card-foreground: 260 10% 10%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 260 10% 10%;
-
-    --primary: 260 83% 66%;
-    --primary-foreground: 260 100% 99%;
-
-    --secondary: 260 27% 97%;
-    --secondary-foreground: 260 83% 46%;
-
-    --muted: 260 27% 94%;
-    --muted-foreground: 260 10% 40%;
-
-    --accent: 24 95% 53%;
-    --accent-foreground: 260 100% 99%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 260 100% 99%;
-
-    --border: 260 27% 90%;
-    --input: 260 27% 90%;
-    --ring: 260 83% 66%;
-
-    --radius: 0.75rem;
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 260 22% 12%;
-    --foreground: 260 100% 98%;
-
-    --card: 260 22% 15%;
-    --card-foreground: 260 100% 98%;
-
-    --popover: 260 22% 15%;
-    --popover-foreground: 260 100% 98%;
-
-    --primary: 260 83% 66%;
-    --primary-foreground: 260 100% 98%;
-
-    --secondary: 260 22% 20%;
-    --secondary-foreground: 260 100% 98%;
-
-    --muted: 260 22% 20%;
-    --muted-foreground: 260 10% 70%;
-
-    --accent: 24 95% 53%;
-    --accent-foreground: 260 100% 98%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 260 100% 98%;
-
-    --border: 260 22% 25%;
-    --input: 260 22% 25%;
-    --ring: 260 83% 66%;
-  }
+:root {
+  /* Warm, earthy Ghibli-inspired theme */
+  --background: 85 28% 60%; /* Muted green */
+  --foreground: 50 20% 20%; /* Dark earthy brown */
+  
+  --card: 45 40% 88%; /* Warm parchment/papyrus */
+  --card-foreground: 50 20% 20%;
+  
+  --popover: 45 40% 88%;
+  --popover-foreground: 50 20% 20%;
+  
+  --primary: 85 28% 40%; /* Deeper green */
+  --primary-foreground: 45 40% 88%;
+  
+  --secondary: 45 40% 80%; /* Lighter parchment */
+  --secondary-foreground: 85 28% 30%;
+  
+  --muted: 45 30% 83%;
+  --muted-foreground: 85 10% 35%;
+  
+  --accent: 35 70% 70%; /* Warm golden accent */
+  --accent-foreground: 50 20% 20%;
+  
+  --destructive: 0 60% 50%;
+  --destructive-foreground: 45 40% 88%;
+  
+  --border: 45 30% 70%;
+  --input: 45 30% 83%;
+  --ring: 85 28% 40%;
+  
+  --radius: 0.75rem;
+  
+  /* Day mode colors (default) */
+  --ghibli-sky: #71B6FF;
+  --ghibli-water: #64cdee;
+  --ghibli-sun: #FFD56B;
+  --ghibli-forest: #4E7A51;
+  --ghibli-hills: #77A779;
+  --ghibli-distant-hills: #94BFAB;
+  --ghibli-cream: #FFF8E7;
+  --ghibli-brown: #A67C52;
+  --ghibli-accent: #FF9D5C;
+  --ghibli-accent-dark: #e58041;
+  
+  /* Animation timings */
+  --float-duration: 6s;
+  --float-delay: 2s;
+  --dust-duration: 15s;
+  --pulse-duration: 2s;
 }
 
-@layer base {
-  * {
-    @apply border-border;
+/* Night mode colors */
+[data-theme='dark'] {
+  /* Dark theme HSL variables */
+  --background: 222 47% 11%;
+  --foreground: 210 40% 98%;
+  
+  --card: 222 47% 15%;
+  --card-foreground: 210 40% 98%;
+  
+  --popover: 222 47% 15%;
+  --popover-foreground: 210 40% 98%;
+  
+  --primary: 217 91% 60%;
+  --primary-foreground: 210 40% 98%;
+  
+  --secondary: 217 32% 17%;
+  --secondary-foreground: 210 40% 98%;
+  
+  --muted: 217 32% 17%;
+  --muted-foreground: 215 20% 65%;
+  
+  --accent: 217 91% 60%;
+  --accent-foreground: 210 40% 98%;
+  
+  --destructive: 0 62% 30%;
+  --destructive-foreground: 210 40% 98%;
+  
+  --border: 217 32% 17%;
+  --input: 217 32% 17%;
+  --ring: 224 71% 45%;
+  
+  /* Ghibli color overrides for dark mode */
+  --ghibli-sky: #0F2B4C;
+  --ghibli-water: #184272;
+  --ghibli-sun: #e0e0e0;
+  --ghibli-forest: #1F3626;
+  --ghibli-hills: #2A4A3D;
+  --ghibli-distant-hills: #344E59;
+  --ghibli-cream: #E1E6EF;
+  --ghibli-brown: #5E4B3A;
+  --ghibli-accent: #64ABFF;
+  --ghibli-accent-dark: #4A8FE0;
+}
+
+/* Base styles */
+body {
+  overflow-x: hidden;
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html, body {
+  background-color: var(--ghibli-sky);
+  color: var(--ghibli-cream);
+}
+
+[data-theme='dark'] html, 
+[data-theme='dark'] body {
+  background-color: var(--ghibli-sky);
+  color: var(--ghibli-cream);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: #436045;
+  font-weight: 500;
+}
+
+[data-theme='dark'] h1,
+[data-theme='dark'] h2,
+[data-theme='dark'] h3,
+[data-theme='dark'] h4,
+[data-theme='dark'] h5,
+[data-theme='dark'] h6 {
+  color: #f9fafb;
+}
+
+/* Pixelated header like in the Vibestamps reference */
+.pixelated-header {
+  font-family: 'Press Start 2P', monospace;
+  text-shadow: 
+    3px 3px 0 rgba(0,0,0,0.2),
+    2px 2px 0 rgba(0,0,0,0.1);
+  letter-spacing: -0.03em;
+  text-transform: lowercase;
+  transform: rotate(-2deg);
+  display: inline-block;
+  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 2rem;
+}
+
+[data-theme='dark'] .pixelated-header {
+  background: linear-gradient(to bottom, #ffffff 0%, #a0a0a0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 
+    3px 3px 0 rgba(0,0,0,0.4),
+    2px 2px 0 rgba(0,0,0,0.3);
+}
+
+/* Ghibli-specific animations */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.1; transform: scale(0.8); }
+  50% { opacity: 0.8; transform: scale(1.2); }
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(10px, -15px) rotate(3deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes float-slow {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(15px, -10px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes float-delayed {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(-10px, -5px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes dust {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+  50% { transform: translate(15px, -15px) scale(1.2); opacity: 0.4; }
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes paper-shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+@layer components {
+  /* Paper-like containers - resembling the code blocks in the image */
+  .ghibli-paper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2xl;
+    background-color: #f5e9c9; /* Parchment */
+    border: 1px solid rgba(162, 145, 104, 0.3);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23a29168' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E");
   }
 
-  body {
-    @apply bg-background text-foreground;
+  /* Feature cards - like the ones on the right side of the image */
+  .ghibli-feature-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1xl;
+    padding: 1rem;
+    background-color: #f9f2e0;
+    color: #436045;
+    border: 1px solid rgba(162, 145, 104, 0.3);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
   }
 
-  /* Custom Blog Post Styling */
+  /* Section headers like "/agents" at the top of the image */
+  .ghibli-section-header {
+    color: #ece4c7;
+    font-weight: bold;
+    font-size: 4xl;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Buttons styled like the interactive elements in the image */
+  .ghibli-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    background-color: #699E78; /* Green button */
+    color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .ghibli-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    background-color: #5a8b68;
+  }
+
+  .ghibli-button-secondary {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    background-color: #E1D5B8; /* Beige/parchment */
+    color: #436045;
+    border: 1px solid rgba(162, 145, 104, 0.3);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .ghibli-button-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    background-color: #eae0c9;
+  }
+
+  /* Code blocks with the line numbers and syntax highlighting */
+  .ghibli-code-block {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1xl;
+    font-family: monospace;
+    font-size: 1rem;
+    margin: 1rem 0;
+    background-color: rgba(253, 248, 235, 0.8);
+    border: 1px solid rgba(162, 145, 104, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+
+  .ghibli-code-block pre {
+    padding: 1rem;
+  }
+
+  .ghibli-code-line-number {
+    color: #a29168;
+    opacity: 0.7;
+    display: inline-block;
+    width: 1.5rem;
+    text-align: right;
+    margin-right: 0.75rem;
+  }
+
+  .ghibli-code-keyword {
+    color: #699E78;
+    font-weight: 500;
+  }
+
+  .ghibli-code-string {
+    color: #D7936C;
+  }
+
+  .ghibli-code-comment {
+    color: #a29168;
+    font-style: italic;
+  }
+
+  /* Hand-drawn icons and elements */
+  .ghibli-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(105, 158, 120, 0.15);
+    color: #436045;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  /* Workflow elements like in the diagram */
+  .ghibli-workflow-item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    background-color: rgba(105, 158, 120, 0.15);
+    color: #436045;
+    border: 1px solid rgba(67, 96, 69, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  /* Container with a green background like the header */
+  .ghibli-header-container {
+    background-color: #699E78;
+    color: #f5e9c9;
+    padding: 1.5rem;
+    border-radius: 0 0 1xl 1xl;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Main container that resembles the papyrus background */
+  .ghibli-main-container {
+    background-color: #f5e9c9;
+    min-height: 100vh;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23a29168' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E");
+  }
+
+  /* File dropzone in the Ghibli style */
+  .ghibli-dropzone {
+    border: 2px dashed #699E78;
+    background-color: #f9f2e0;
+    border-radius: 1xl;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .ghibli-dropzone:hover, .ghibli-dropzone.active {
+    background-color: #f5e9c9;
+    border-color: #5a8b68;
+    box-shadow: 0 0 0 4px rgba(105, 158, 120, 0.1);
+  }
+
+  /* Section descriptions like under the /agents header */
+  .ghibli-description {
+    color: #f5e9c9;
+    font-size: 1.25rem;
+    max-width: 40rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Blog post content in the Ghibli style */
+  .blog-content {
+    color: #436045;
+    line-height: 1.75;
+  }
+
   .blog-content h1 {
-    @apply text-3xl font-bold mt-8 mb-4;
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #436045;
+    margin: 1.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #a29168;
   }
 
   .blog-content h2 {
-    @apply text-2xl font-bold mt-6 mb-3;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #436045;
+    margin: 1.5rem 0 0.75rem;
   }
 
   .blog-content h3 {
-    @apply text-xl font-bold mt-5 mb-2;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #436045;
+    margin: 1.25rem 0 0.75rem;
   }
 
   .blog-content p {
-    @apply my-4 leading-relaxed;
+    margin: 1rem 0;
+    color: #436045;
+    opacity: 0.9;
   }
 
   .blog-content ul, .blog-content ol {
-    @apply my-4 ml-6;
-  }
-
-  .blog-content ul {
-    @apply list-disc;
-  }
-
-  .blog-content ol {
-    @apply list-decimal;
+    margin: 1rem 0;
+    padding-left: 2rem;
   }
 
   .blog-content li {
-    @apply my-1;
+    margin-bottom: 0.5rem;
   }
 
-  .blog-content a {
-    @apply text-blog-purple hover:underline;
+  .blog-content ul li {
+    list-style-type: disc;
+  }
+
+  .blog-content ol li {
+    list-style-type: decimal;
   }
 
   .blog-content blockquote {
-    @apply pl-4 border-l-4 border-blog-purple/50 my-4 italic;
-  }
-
-  .blog-content pre {
-    @apply bg-muted p-4 rounded-md my-4 overflow-x-auto;
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+    border-left: 4px solid #699E78;
+    font-style: italic;
+    color: #436045;
+    opacity: 0.8;
+    background-color: #f9f2e0;
+    padding: 0.5rem;
+    border-radius: 0 1xl 1xl 0;
   }
 
   .blog-content code {
-    @apply bg-muted px-1 py-0.5 rounded text-sm;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    background-color: #f9f2e0;
+    color: #436045;
+    font-size: 0.875rem;
+    font-family: monospace;
+  }
+
+  .blog-content pre {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #f9f2e0;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .blog-content pre code {
+    background-color: transparent;
+    padding: 0;
+    color: #436045;
+    opacity: 0.9;
+  }
+
+  .blog-content a {
+    color: #699E78;
+    text-decoration: underline;
+    text-decoration-color: #699E78;
+    text-decoration-color: #699E78;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .blog-content a:hover {
+    text-decoration-color: #699E78;
   }
 
   .blog-content img {
-    @apply my-4 rounded-lg max-w-full h-auto mx-auto;
+    margin: 1.5rem 0;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    margin: 0 auto;
   }
 
-  /* Glass effect */
-  .glass-effect {
-    @apply backdrop-blur-lg bg-white/30 border border-white/40 shadow-lg;
+  /* Brown buttons like in the reference image */
+  .ghibli-brown-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    background-color: var(--ghibli-brown);
+    color: var(--ghibli-cream);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .ghibli-brown-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    filter: brightness(1.1);
+  }
+  
+  /* Navigation buttons like in the header of the reference image */
+  .ghibli-nav-button {
+    padding: 0.5rem;
+    border-radius: 9999px;
+    color: rgba(245, 233, 201, 0.9); /* text-ghibli-cream/90 */
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .ghibli-nav-button:hover {
+    background-color: rgba(217, 151, 63, 0.2); /* ghibli-accent with 20% opacity */
+    color: var(--ghibli-cream);
+    transform: translateY(-1px);
+  }
+  
+  /* Outlined button styling */
+  .ghibli-button-outline {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    background-color: transparent;
+    color: var(--ghibli-brown);
+    border: 2px solid var(--ghibli-brown);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .ghibli-button-outline:hover {
+    background-color: var(--ghibli-brown);
+    color: var(--ghibli-cream);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 }
 
-/* Animated dropzone border */
-@keyframes borderPulse {
-  0%, 100% {
-    border-color: rgba(139, 92, 246, 0.3);
+@layer utilities {
+  /* Use this class to add magical interaction effects */
+  .ghibli-interactive {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
   }
-  50% {
-    border-color: rgba(139, 92, 246, 0.9);
+
+  .ghibli-interactive::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-image: radial-gradient(circle, rgba(105, 158, 120, 0.3) 0%, rgba(245, 233, 201, 0.1) 70%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.5s;
   }
-}
 
-.dropzone-active {
-  animation: borderPulse 2s infinite;
-}
-
-/* Loading animation */
-.loading-dots span {
-  @apply inline-block h-2 w-2 rounded-full bg-blog-purple;
-  animation: loadingDots 1.4s infinite both;
-}
-
-.loading-dots span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.loading-dots span:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes loadingDots {
-  0%, 80%, 100% {
-    transform: scale(0);
-    opacity: 0.5;
-  }
-  40% {
-    transform: scale(1);
+  .ghibli-interactive:hover::after {
     opacity: 1;
   }
 }
 
-/* Lazy-loaded image animation */
-.lazy-image {
-  transition: filter 0.3s ease-out, transform 0.3s ease-out;
-  filter: blur(10px);
-  transform: scale(0.95);
+/* Styling for dark mode headings */
+.dark-mode-heading {
+  color: #a5b4fc !important; /* indigo-300 */
+  text-shadow: 0 0 2px rgba(165, 180, 252, 0.5);
+  border-bottom: 1px solid rgba(165, 180, 252, 0.2);
+  padding-bottom: 0.25rem;
 }
 
-.lazy-image.loaded {
-  filter: blur(0);
-  transform: scale(1);
+.dark-mode-heading:first-of-type {
+  background: linear-gradient(90deg, #a5b4fc, #818cf8, #a5b4fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  text-shadow: none;
+}
+
+/* Ghibli-inspired title */
+.ghibli-title {
+  font-size: 4.5rem;
+  font-weight: normal;
+  color: #4a380c;
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+  text-shadow: 
+    1px 1px 0 rgba(255, 255, 255, 0.6),
+    3px 3px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: inline-block;
+}
+
+.ghibli-title::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(138, 114, 69, 0.4) 20%, 
+    rgba(138, 114, 69, 0.8) 50%,
+    rgba(138, 114, 69, 0.4) 80%, 
+    transparent);
+}
+
+.ghibli-subtitle {
+  font-size: 1.2rem;
+  color: #4a380c;
+  opacity: 0.9;
+  text-align: center;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Dark mode styling */
+.dark .ghibli-title {
+  color: #e0e7ff;
+  text-shadow: 
+    0 0 1px rgba(0, 0, 0, 0.8),
+    0 0 3px rgba(99, 102, 241, 0.6),
+    1px 1px 5px rgba(29, 78, 216, 0.3);
+}
+
+.dark .ghibli-title::after {
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(129, 140, 248, 0.3) 20%, 
+    rgba(129, 140, 248, 0.8) 50%,
+    rgba(129, 140, 248, 0.3) 80%, 
+    transparent);
+}
+
+.dark .ghibli-subtitle {
+  color: #cbd5e1;
+}
+
+/* Animation utility classes */
+.animate-float {
+  animation: float var(--float-duration, 6s) infinite ease-in-out;
+}
+
+.animate-float-slow {
+  animation: float-slow var(--float-duration, 6s) infinite ease-in-out;
+}
+
+.animate-float-delayed {
+  animation: float-delayed var(--float-duration, 6s) infinite ease-in-out;
+  animation-delay: var(--float-delay, 2s);
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow var(--pulse-duration, 2s) infinite ease-in-out;
+}
+
+.animate-twinkle {
+  animation: twinkle var(--pulse-duration, 3s) infinite ease-in-out;
 }

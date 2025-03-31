@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Share2, Twitter, Facebook, Linkedin, Link, Mail } from 'lucide-react';
+import { Share2, Twitter, Facebook, Linkedin, Link, Mail, Wind, CloudSun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 
@@ -38,22 +37,32 @@ const ShareWidget: React.FC<ShareWidgetProps> = ({ title }) => {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(shareUrl)
       .then(() => {
-        toast.success('Link copied to clipboard!');
+        toast.success('Link copied to clipboard!', {
+          style: { background: '#D6E5C0', border: '1px solid #5D7B6F', color: '#5D7B6F' },
+          icon: <CloudSun className="h-5 w-5 text-ghibli-forest" />
+        });
       })
       .catch(() => {
-        toast.error('Failed to copy link');
+        toast.error('Failed to copy link', {
+          style: { background: '#FFADAD', border: '1px solid #5D7B6F', color: '#5D7B6F' }
+        });
       });
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto mt-8 bg-white rounded-xl overflow-hidden shadow-md">
-      <div className="p-6">
+    <div className="w-full max-w-2xl mx-auto mt-8 ghibli-paper relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-0 right-0 opacity-10 z-0">
+        <Wind className="h-20 w-20 text-ghibli-forest" style={{ transform: 'rotate(-10deg)' }} />
+      </div>
+      
+      <div className="p-6 relative z-10">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">
-            <Share2 className="h-5 w-5 text-blog-purple mr-2" />
-            <h3 className="text-lg font-medium">Share this blog post</h3>
+            <Share2 className="h-5 w-5 text-ghibli-forest mr-2" />
+            <h3 className="text-lg font-medium font-ghibli-display text-ghibli-forest">Share this blog post</h3>
           </div>
-          <div className="text-xs text-muted-foreground">
+          <div className="text-xs text-ghibli-forest/60 font-ghibli-handwritten">
             Created with Mastra + Mistral OCR
           </div>
         </div>
@@ -62,23 +71,19 @@ const ShareWidget: React.FC<ShareWidgetProps> = ({ title }) => {
           {shareLinks.map((link) => (
             <Button
               key={link.name}
-              variant="outline"
-              size="sm"
-              className="flex items-center gap-2 hover:bg-blog-light-purple hover:text-blog-purple transition-colors"
+              className="ghibli-button-outline text-sm"
               onClick={() => window.open(link.url, '_blank')}
             >
-              {link.icon}
+              <span className="mr-2">{link.icon}</span>
               {link.name}
             </Button>
           ))}
           
           <Button
-            variant="outline"
-            size="sm"
-            className="flex items-center gap-2 hover:bg-blog-light-purple hover:text-blog-purple transition-colors"
+            className="ghibli-button-accent text-sm"
             onClick={copyToClipboard}
           >
-            <Link className="h-4 w-4" />
+            <Link className="h-4 w-4 mr-2" />
             Copy Link
           </Button>
         </div>
