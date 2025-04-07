@@ -215,13 +215,8 @@ const Index: React.FC = () => {
 
   // Get title from the first heading in markdown
   const getTitle = () => {
-    if (!apiResponse || !apiResponse.pages || apiResponse.pages.length === 0) {
-      return 'Your PDF has been transformed into a blog post';
-    }
-    
-    const firstPage = apiResponse.pages[0];
-    const titleMatch = firstPage.markdown.match(/^#\s+(.+)$/m);
-    return titleMatch ? titleMatch[1].trim() : 'Your PDF has been transformed into a blog post';
+    // Always return the default title
+    return 'Your PDF has been transformed into a blog post';
   };
 
   return (
