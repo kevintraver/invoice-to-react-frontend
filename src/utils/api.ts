@@ -31,7 +31,7 @@ export interface ApiResponse {
   usage_info: UsageInfo;
 }
 
-const API_URL = 'http://localhost:5018/api/upload-pdf';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5018/api/upload-pdf';
 
 export async function processPdf(file: File): Promise<ApiResponse> {
   try {
