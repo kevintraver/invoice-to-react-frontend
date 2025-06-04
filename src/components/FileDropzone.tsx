@@ -6,9 +6,11 @@ import { toast } from 'sonner';
 interface FileDropzoneProps {
   onFileAccepted: (file: File) => void;
   isProcessing: boolean;
+  acceptedFileTypes?: string;
+  fileTypeLabel?: string;
 }
 
-const FileDropzone: React.FC<FileDropzoneProps> = ({ onFileAccepted, isProcessing }) => {
+const FileDropzone: React.FC<FileDropzoneProps> = ({ onFileAccepted, isProcessing, acceptedFileTypes = "application/pdf", fileTypeLabel = "PDF files" }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -27,9 +29,13 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({ onFileAccepted, isProcessin
   }, []);
 
   const validateFile = (file: File): boolean => {
-    // Check if the file is a PDF
-    if (file.type !== 'application/pdf') {
-      toast.error('Please upload a PDF file', {
+    // Check file type based on acceptedFileTypes prop
+    const isValidType = acceptedFileTypes === "image/*" 
+      ? file.type.startsWith('image/') 
+      : file.type === acceptedFileTypes;
+    
+    if (!isValidType) {
+      toast.error(`Please upload ${fileTypeLabel}`, {
         style: { background: '#FFADAD', border: '1px solid #5D7B6F', color: '#5D7B6F' }
       });
       return false;
@@ -102,7 +108,7 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({ onFileAccepted, isProcessin
         ref={fileInputRef}
         type="file"
         onChange={handleFileInput}
-        accept=".pdf"
+        accept={acceptedFileTypes}
         className="hidden"
         disabled={isProcessing}
       />
